@@ -1,0 +1,25 @@
+{
+  "name": "phaser-track",
+  "version": "0.1.0",
+  "description": "Let things follow things",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "start": "coffeebar --watch .",
+    "preversion": "eslint .",
+    "pub": "np --no-cleanup --no-publish"
+  },
+  "keywords": [
+    "phaser"
+  ],
+  "author": "samme",
+  "license": "ISC",
+  "dependencies": {
+    "phaser": "^2.6.2"
+  },
+  "devDependencies": {
+    "coffeebar": "^1.0.0"
+  }
+}

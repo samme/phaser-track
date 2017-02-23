@@ -1,0 +1,28 @@
+{
+  "name": "phaser-track",
+  "description": "Let things follow things",
+  "main": "index.js",
+  "authors": [
+    "samme"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "phaser"
+  ],
+  "homepage": "https://github.com/samme/phaser-track",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "*.coffee",
+    "*.html",
+    "*.png",
+    "example/"
+  ],
+  "dependencies": {
+    "phaser": "^2.6.2"
+  }
+}
