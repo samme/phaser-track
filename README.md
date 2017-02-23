@@ -1,3 +1,7 @@
+![Screenshot](https://samme.github.io/phaser-track/screenshot.png)
+
+[Demo](https://samme.github.io/phaser-track/)
+
 Use
 ---
 
