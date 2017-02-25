@@ -48,7 +48,7 @@
   trackComponent = {
     postUpdate: function() {
       var ref, result, target, targetX, targetY, trackOffset, trackRotateOffset, trackRotation, x, y;
-      result = this._trackComponentOrigPostUpdate.call(this, arguments);
+      result = this._trackComponentOrigPostUpdate.apply(this, arguments);
       if (!(this.exists && this.data)) {
         return result;
       }

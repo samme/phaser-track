@@ -38,7 +38,7 @@ trackComponent =
 
   postUpdate: ->
     # postUpdate is called even when `exists` is false
-    result = @_trackComponentOrigPostUpdate.call this, arguments
+    result = @_trackComponentOrigPostUpdate.apply this, arguments
 
     unless @exists and @data
       return result
