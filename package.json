@@ -1,6 +1,6 @@
 {
   "name": "phaser-track",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Let things follow things",
   "main": "index.js",
   "directories": {
