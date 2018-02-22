@@ -7,10 +7,10 @@
 
 _point = new Phaser.Point
 
-_emitterOrigDestroy = Emitter::destroy
+_emitterDestroy = Emitter::destroy
 
 Emitter::destroy = ->
-  _emitterOrigDestroy.call this
+  _emitterDestroy.call this
   if @data
     @data = {}
   return
@@ -84,15 +84,21 @@ trackComponent =
     @data.trackTargetGetY = null
     return
 
-  track: (obj, offsetX = 0, offsetY = 0, trackRotation = no, rotateOffset = no, disableBodyMoves = yes) ->
+  track: (obj, options = {}) ->
+    # offsetX = 0, offsetY = 0, trackRotation = no, rotateOffset = no, disableBodyMoves = yes
     @data ?= {}
-    @data.trackTarget = obj
-    (@data.trackOffset ?= new Point).set offsetX, offsetY
-    @data.trackRotation = trackRotation
-    @data.trackRotateOffset = rotateOffset
-    if @body and @body.moves and disableBodyMoves
+    @data.trackTarget       = obj
+    @data.trackOffset      ?= new Point
+    @data.trackOffset.x     = options.offsetX       or 0
+    @data.trackOffset.y     = options.offsetY       or 0
+    # @data.trackPosition     = options.trackPosition or null
+    @data.trackRotation     = options.trackRotation or no
+    @data.trackRotateOffset = options.rotateOffset  or no
+    if @body and @body.moves and options.disableBodyMoves
       @body.moves = no
       @data.trackDisableBodyMoves = yes
+    else
+      @data.trackDisableBodyMoves = no
     @_setTrackTargetGetters obj
     return
 

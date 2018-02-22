@@ -7,12 +7,19 @@ Use
 
 ### Start tracking another object
 ```javascript
-obj.track(target, offsetX = 0, offsetY = 0, trackRotation = false, rotateOffset = false, disableBodyMoves = true)
+obj.track(target, {
+  // Default options:
+  offsetX          : 0,
+  offsetY          : 0,
+  trackRotation    : false,
+  rotateOffset     : false,
+  disableBodyMoves : true
+})
 ```
 
 - `obj` is a [Sprite][1] or [Emitter][2]
 - `target` is a Display Object, a [Pointer][3], or any object with `x` and `y`
-- `trackRotation`: match the object’s `rotation` to the target’s
+- `trackRotation`: match the object’s `rotation` to the target’s `rotation`
 - `rotateOffset`: rotate the offset around the target by the target’s `rotation`
 - `disableBodyMoves`: suspend the object’s physics movement while tracking
 
@@ -33,6 +40,12 @@ It will not track while its own `exists` is false.
 ```javascript
 obj.untrack()
 ```
+
+Change Log
+----------
+
+- 1.0.0 (2018-02-21) — Changed `track` arguments
+- 0.1.3 (2017-02-27) — First NPM release
 
 [1]: http://phaser.io/docs/2.6.2/Phaser.Sprite.html
 [2]: http://phaser.io/docs/2.6.2/Phaser.Particles.Arcade.Emitter.html

@@ -66,7 +66,7 @@ window.GAME = new (Phaser.Game)
       return
 
     preload: ->
-      @load.baseURL = "http://examples.phaser.io/assets/"
+      @load.baseURL = "https://cdn.jsdelivr.net/gh/samme/phaser-examples-assets@v2.0.0/assets/"
       @load.crossOrigin = "anonymous"
       @load.image "dude", "sprites/phaser-dude.png"
       @load.image "ship", "sprites/ship.png"
@@ -75,7 +75,7 @@ window.GAME = new (Phaser.Game)
       return
 
     create: ->
-      @physics.arcade.gravity.y = 500
+      @physics.arcade.gravity.y = 60
 
       ship = @ship = @add.sprite 0, 0, "ship"
       ship.name = "ship"
@@ -93,7 +93,11 @@ window.GAME = new (Phaser.Game)
       sprite.anchor.set 0.5
       @physics.enable sprite
       sprite.body.angularVelocity = 60
-      sprite.track ship, 0, -80, yes, yes
+      sprite.track ship,
+        offsetX: 0
+        offsetY: -80
+        trackRotation: yes
+        rotateOffset: yes
 
       flames = @flames = @add.emitter 0, 0, 20
         .setAlpha 0.75, 0, 4 * SECOND, Cubic.Out
@@ -105,8 +109,12 @@ window.GAME = new (Phaser.Game)
         .flow 2 * SECOND, 100
       flames.name = "flames"
       flames.blendMode = ADD
-      flames.gravity = -500
-      flames.track ship, 0, 35, no, yes
+      flames.gravity = -60
+      flames.track ship,
+        offsetX: 0
+        offsetY: 35
+        trackRotation: no
+        rotateOffset: yes
 
       stars = @stars = @add.emitter 0, 0, 10
         .setAlpha 1, 0, 2 * SECOND
@@ -114,7 +122,7 @@ window.GAME = new (Phaser.Game)
         .flow SECOND, 100
       stars.name = "stars"
       stars.blendMode = ADD
-      stars.gravity = -500
+      stars.gravity = -30
       stars.track @input.activePointer
 
       @add.text 20, 560, "Drag the ship around (↑) or kill/revive/destroy it (→)",
@@ -185,4 +193,3 @@ window.GAME = new (Phaser.Game)
         label: "#{obj.name}.data"
         sort: yes
       return
-

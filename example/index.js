@@ -75,7 +75,7 @@
         debug.lineHeight = 25;
       },
       preload: function() {
-        this.load.baseURL = "http://examples.phaser.io/assets/";
+        this.load.baseURL = "https://cdn.jsdelivr.net/gh/samme/phaser-examples-assets@v2.0.0/assets/";
         this.load.crossOrigin = "anonymous";
         this.load.image("dude", "sprites/phaser-dude.png");
         this.load.image("ship", "sprites/ship.png");
@@ -84,7 +84,7 @@
       },
       create: function() {
         var flames, ship, sprite, stars;
-        this.physics.arcade.gravity.y = 500;
+        this.physics.arcade.gravity.y = 60;
         ship = this.ship = this.add.sprite(0, 0, "ship");
         ship.name = "ship";
         ship.anchor.set(0.5);
@@ -100,16 +100,26 @@
         sprite.anchor.set(0.5);
         this.physics.enable(sprite);
         sprite.body.angularVelocity = 60;
-        sprite.track(ship, 0, -80, true, true);
+        sprite.track(ship, {
+          offsetX: 0,
+          offsetY: -80,
+          trackRotation: true,
+          rotateOffset: true
+        });
         flames = this.flames = this.add.emitter(0, 0, 20).setAlpha(0.75, 0, 4 * SECOND, Cubic.Out).setRotation(-360, 360).setScale(4, 1, 4, 1, 4 * SECOND, Cubic.Out).setXSpeed(-25, 25).setYSpeed(-25, 75).makeParticles("star").flow(2 * SECOND, 100);
         flames.name = "flames";
         flames.blendMode = ADD;
-        flames.gravity = -500;
-        flames.track(ship, 0, 35, false, true);
+        flames.gravity = -60;
+        flames.track(ship, {
+          offsetX: 0,
+          offsetY: 35,
+          trackRotation: false,
+          rotateOffset: true
+        });
         stars = this.stars = this.add.emitter(0, 0, 10).setAlpha(1, 0, 2 * SECOND).makeParticles("star2").flow(SECOND, 100);
         stars.name = "stars";
         stars.blendMode = ADD;
-        stars.gravity = -500;
+        stars.gravity = -30;
         stars.track(this.input.activePointer);
         this.add.text(20, 560, "Drag the ship around (↑) or kill/revive/destroy it (→)", {
           fill: "#E800B0",
